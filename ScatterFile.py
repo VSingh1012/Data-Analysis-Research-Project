@@ -5,6 +5,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from tkinter import ttk
+import customtkinter as ctk
+
+ctk.set_appearance_mode("dark")
 
 class Scatter:
 
@@ -28,7 +31,7 @@ class Scatter:
       plt.show()
 
     def makeScatterPlot():
-      errorLabel.config(text=" ")
+      # errorLabel.configure(text=" ")
     
       dataInd1 = selection3.index(scatter_clicked1.get())
       dataInd2 = selection4.index(scatter_clicked2.get())
@@ -54,74 +57,72 @@ class Scatter:
     
       plot(self.df, dataInd1, dataInd2, data1, data2)
 
-    scatter_page = tk.Toplevel(self.win)
+    scatter_page = ctk.CTkToplevel(self.win)
 
     scatter_page.title("Scatter Plot")
 
     scatter_page.geometry('400x400')
 
-    scatter_title = tk.Label(master=scatter_page,
-                             text="\nScatter Plot",
-                             font=('Helvetica bold', 16))
+    scatter_title = ctk.CTkLabel(master=scatter_page,
+                             text="Scatter Plot",
+                             font=('Comic Sans Bold', 25), text_color="#399adb")
 
-    scatter_title.pack()
+    scatter_title.pack(padx=10, pady=2)
 
 
 # Beginning of Scatter plot stuff
 
-    scatter_prompt = 'How many data points would you like to have? The maximum points you can have are: ' + str(
-      len(self.df))
-    scatter_question = tk.Label(master=scatter_page, text=scatter_prompt)
-    scatter_question.pack()
+    scatter_prompt = 'How many data points would you like to have? The maximum points you can have are: ' + str(len(self.df))
+    scatter_question = ctk.CTkLabel(master=scatter_page, text=scatter_prompt, text_color="#399adb", font=("Comic Sans", 15))
+    scatter_question.pack(padx=10, pady=4)
 
-    errorLabel = tk.Label(master=scatter_page, text="", fg='red', font=('Arial', 7))
-    errorLabel.pack()
+    # errorLabel = ctk.CTkLabel(master=scatter_page, text="", text_color='Red', font=('Comic Sans', 5))
+    # errorLabel.pack()
 
-    scatterInput = tk.Entry(master=scatter_page)
-    scatterInput.pack()
+    scatterInput = ctk.CTkEntry(master=scatter_page, fg_color="#399adb", placeholder_text_color='white', placeholder_text="Number of Data Points")
+    scatterInput.pack(padx=10, pady=5)
     #---------------------------------------------
 
     selection3 = list(self.df.columns.values)
 
     selection4 = list(self.df.columns.values)
 
-    scatter_question = tk.Label(
-      master=scatter_page, text="What selection of data would you like for the x-axis?")
-    scatter_question.pack()
+    scatter_question = ctk.CTkLabel(
+      master=scatter_page, text="What selection of data would you like for the x-axis?", text_color="#399adb", font=("Comic Sans" , 15))
+    scatter_question.pack(padx=10, pady=7)
 
     scatter_clicked1 = tk.StringVar()
 
     scatter_clicked1.set(selection3[0])
 
-    xAxisDropdown1 = tk.OptionMenu(scatter_page, scatter_clicked1, *selection3)
-    xAxisDropdown1.pack()
+    xAxisDropdown1 = ctk.CTkOptionMenu(master=scatter_page, variable=scatter_clicked1, values=selection3, fg_color="#399adb", dropdown_fg_color="#399adb")
+    xAxisDropdown1.pack(padx=10, pady=8)
 
     #------------------------------------------------------------
 
-    scatter_question2 = tk.Label(
-      master=scatter_page, text="What selection of data would you like for the y-axis?")
-    scatter_question2.pack()
+    scatter_question2 = ctk.CTkLabel(
+      master=scatter_page, text="What selection of data would you like for the y-axis?", text_color= "#399adb", font=("Comic Sans", 15))
+    scatter_question2.pack(padx=10, pady=10)
 
     scatter_clicked2 = tk.StringVar()
 
     scatter_clicked2.set(selection4[1])
 
-    yAxisDropdown2 = tk.OptionMenu(scatter_page, scatter_clicked2, *selection4)
+    yAxisDropdown2 = ctk.CTkOptionMenu(master=scatter_page, variable=scatter_clicked2, values=selection4, fg_color="#399adb", dropdown_fg_color="#399adb")
     yAxisDropdown2.pack()
 
-    scatter_label = tk.Label(
+    scatter_label = ctk.CTkLabel(
       master=scatter_page,
       text=
-      "Click the button to plot your scatter plot! (2 sets of numerical data are needed)"
-    )
+      "Click the button to plot your scatter plot! (2 sets of numerical data are needed)", text_color="#399adb", font=("Comic Sans", 15))
 
-    scatter_label.pack()
+    scatter_label.pack(padx=10, pady=12)
 
-    sp_button = tk.Button(master=scatter_page,
+    sp_button = ctk.CTkButton(master=scatter_page,
                           text="Plot Scatter Plot",
-                          height=3,
+                          height=25, fg_color= "#399adb",
                           command=makeScatterPlot)
 
-    sp_button.pack()
+    sp_button.pack(padx=10, pady=13)
 
 
