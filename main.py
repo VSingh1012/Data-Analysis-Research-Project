@@ -8,47 +8,66 @@ from tkinter import ttk
 from BarFile import Bar
 from LinRegFile import LinReg
 from ScatterFile import Scatter
+from Selection import SelectionScreen
+import customtkinter as ctk
+from PIL import ImageTk, Image
 
+ctk.set_appearance_mode("dark")
 
-window = tk.Tk()
+window = ctk.CTk()
 
 window.title("Data Analyzer")
 
 window.geometry("400x400")
 
-window.resizable(True, True)
 
-window.attributes('-fullscreen', False)
+#window.resizable(True, True)
 
-title = tk.Label(text="Data Analyzer", font=("Arial", 40))
+# window.attributes('-fullscreen', False)
+
+title = ctk.CTkLabel(master=window, text="DataFy", text_color="#399adb", font=("Comic Sans Bold", 60))
 
 title.pack(pady=20)
 
-fileLabel = tk.Label(text=" ", bg='white')
-fileLabel.pack()
+selection = SelectionScreen(window)
 
-csv_file = filedialog.askopenfilename()
+start_button = ctk.CTkButton(master=window, text="Start", fg_color="#399adb", font= ("Arial", 15), height=25, command=selection.__call__)
 
-dataframe = pd.read_csv(csv_file)
+start_button.pack()
 
-fileLabel.config(text="File used: " + csv_file)
+title_img = ctk.CTkImage(Image.open("titlePhoto.png"), size=(300, 200))
 
-bar = Bar(window, dataframe)
 
-scatter = Scatter(window, dataframe)
 
-linreg = LinReg(window, dataframe)
+title_img_label = ctk.CTkLabel(master=window, text='', image=title_img)
 
-bar_button = tk.Button(text="Go to Bar Plot page", command=bar.__call__)
+title_img_label.pack(padx=10, pady=50)
 
-bar_button.pack()
+# fileLabel = tk.Label(text=" ", bg='white')
+# fileLabel.pack()
 
-scatter_button = tk.Button(text="Go to Scatter Plot page", command=scatter.__call__)
+# csv_file = filedialog.askopenfilename()
 
-scatter_button.pack()
+# dataframe = pd.read_csv(csv_file)
 
-linreg_button = tk.Button(text="Go to Linear Regression Graph page", command=linreg.__call__)
+# fileLabel.config(text="File used: " + csv_file)
 
-linreg_button.pack()
+# bar = Bar(window, dataframe)
+
+# scatter = Scatter(window, dataframe)
+
+# linreg = LinReg(window, dataframe)
+
+# bar_button = tk.Button(text="Go to Bar Plot page", command=bar.__call__)
+
+# bar_button.pack()
+
+# scatter_button = tk.Button(text="Go to Scatter Plot page", command=scatter.__call__)
+
+# scatter_button.pack()
+
+# linreg_button = tk.Button(text="Go to Linear Regression Graph page", command=linreg.__call__)
+
+# linreg_button.pack()
 
 window.mainloop()
