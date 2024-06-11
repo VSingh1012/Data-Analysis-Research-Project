@@ -43,31 +43,5 @@ title_img_label = ctk.CTkLabel(master=window, text='', image=title_img)
 
 title_img_label.pack(padx=10, pady=50)
 
-# fileLabel = tk.Label(text=" ", bg='white')
-# fileLabel.pack()
-
-# csv_file = filedialog.askopenfilename()
-
-# dataframe = pd.read_csv(csv_file)
-
-# fileLabel.config(text="File used: " + csv_file)
-
-# bar = Bar(window, dataframe)
-
-# scatter = Scatter(window, dataframe)
-
-# linreg = LinReg(window, dataframe)
-
-# bar_button = tk.Button(text="Go to Bar Plot page", command=bar.__call__)
-
-# bar_button.pack()
-
-# scatter_button = tk.Button(text="Go to Scatter Plot page", command=scatter.__call__)
-
-# scatter_button.pack()
-
-# linreg_button = tk.Button(text="Go to Linear Regression Graph page", command=linreg.__call__)
-
-# linreg_button.pack()
 
 window.mainloop()
