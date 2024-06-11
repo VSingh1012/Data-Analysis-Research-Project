@@ -5,8 +5,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from tkinter import ttk
+import customtkinter as ctk
 
-
+ctk.set_appearance_mode("dark")
 
 class LinReg:
   def __init__(self, win, df):
@@ -17,7 +18,7 @@ class LinReg:
     
     def makeLine():
       
-      errorLabel2.config(text="")
+    #  errorLabel2.configure(text="")
     
       chosen_val = selection5.index(lin_clicked.get())
       chosen_val2 = selection6.index(lin_clicked2.get())
@@ -43,70 +44,69 @@ class LinReg:
       plt.show()
 
 
-# Start of Linear Regression Setup 
+# Start of Linear Regression Setup (Universal Color: "#399adb")
 
 
-    lr_page = tk.Toplevel(self.win)
+    lr_page = ctk.CTkToplevel(self.win)
 
     lr_page.title("Linear Regression Page")
 
     lr_page.geometry("400x400")
 
-    lr_title = tk.Label(master=lr_page,
+    lr_title = ctk.CTkLabel(master=lr_page,
                         text="\nLinear Regression",
-                        font=('Helvetica Bold', 16))
-    lr_title.pack()
+                        font=('Comic Sans Bold', 25), text_color="#399adb")
+    lr_title.pack(padx=10, pady=2)
 
     scatter_prompt = 'How many data points would you like to have? The maximum points you can have are: ' + str(
       len(self.df))
 
-    lin_question = tk.Label(master=lr_page, text=scatter_prompt)
-    lin_question.pack()
+    lin_question = ctk.CTkLabel(master=lr_page, text=scatter_prompt, text_color="#399adb", font=("Comic Sans", 15))
+    lin_question.pack(padx=10, pady=4)
 
-    errorLabel2 = tk.Label(master=lr_page, text="", fg='red', font=('Arial', 7))
-    errorLabel2.pack()
+    # errorLabel2 = ctk.CTkLabel(master=lr_page, text="", fg='red', font=('Arial', 7))
+    # errorLabel2.pack()
 
-    linInput = tk.Entry(master=lr_page)
-    linInput.pack()
+    linInput = ctk.CTkEntry(master=lr_page,fg_color="#399adb", placeholder_text_color='white', placeholder_text="Number of Data Points")
+    linInput.pack(padx=10, pady=5)
 
     selection5 = list(self.df.columns.values)
     selection6 = list(self.df.columns.values)
 
     #---------------------------------------------------------------------
-    lin_label1 = tk.Label( 
-      master=lr_page, text="What selection of data would you like for the x-axis?")
-    lin_label1.pack()
+    lin_label1 = ctk.CTkLabel( 
+      master=lr_page, text="What selection of data would you like for the x-axis?", text_color="#399adb", font=("Comic Sans", 15))
+    lin_label1.pack(padx=10, pady=7)
 
     lin_clicked = tk.StringVar()
 
     lin_clicked.set(selection5[0])
 
-    xAxisDropdown3 = tk.OptionMenu(lr_page, lin_clicked, *selection5)
-    xAxisDropdown3.pack()
+    xAxisDropdown3 = ctk.CTkOptionMenu(master=lr_page, variable=lin_clicked, values=selection5, fg_color="#399adb", dropdown_fg_color="#399adb")
+    xAxisDropdown3.pack(padx=10, pady=8)
 
     #---------------------------------------------------------------------
 
-    lin_label2 = tk.Label(
-      master=lr_page, text="What selection of data would you like for the y-axis?")
-    lin_label2.pack()
+    lin_label2 = ctk.CTkLabel(
+      master=lr_page, text="What selection of data would you like for the y-axis?", font=("Comic Sans", 15), text_color="#399adb")
+    lin_label2.pack(padx=10, pady=10)
 
     lin_clicked2 = tk.StringVar()
 
     lin_clicked2.set(selection6[1])
 
-    yAxisDropdown3 = tk.OptionMenu(lr_page, lin_clicked2, *selection6)
-    yAxisDropdown3.pack()
+    yAxisDropdown3 = ctk.CTkOptionMenu(master=lr_page, variable=lin_clicked2, values=selection6, fg_color="#399adb", dropdown_fg_color="#399adb")
+    yAxisDropdown3.pack(padx=10, pady=11)
 
     #---------------------------------------------------------------------
 
-    lr_question = tk.Label(
+    lr_question = ctk.CTkLabel(
       master=lr_page,
-      text="Click the button below to plot a Linear Regression plot!")
-    lr_question.pack()
+      text="Click the button below to plot a Linear Regression plot!", font=('Comic Sans', 15), text_color="#399adb")
+    lr_question.pack(padx=10, pady=13)
 
-    lr_button = tk.Button(master=lr_page,
-                          text="Plot Linear Regression",
-                          height=3,
-                          command=makeLine)
-    lr_button.pack()
+    lr_button = ctk.CTkButton(master=lr_page,
+                          text="Plot Linear Regression", fg_color="#399adb", height=25, font=("Arial", 15), command=makeLine)
+                        
+    lr_button.pack(padx=10, pady=13)
       
