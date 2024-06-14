@@ -5,14 +5,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from tkinter import ttk
+from BarFile import Bar
 import customtkinter as ctk
+from PIL import ImageTk, Image
 
 ctk.set_appearance_mode("dark")
 
 class Scatter:
 
-  
-  
   def __init__(self, win, df):
     self.win = win
     self.df = df
@@ -37,9 +37,7 @@ class Scatter:
       dataInd2 = selection4.index(scatter_clicked2.get())
     
       numberOfRows = int(scatterInput.get())
-    
-    
-    
+
       scatterInput.delete(0, tk.END)
     
       col1 = self.df.iloc[:numberOfRows, dataInd1]
@@ -57,11 +55,18 @@ class Scatter:
     
       plot(self.df, dataInd1, dataInd2, data1, data2)
 
+# Beginning of Scatter plot stuff
+
+    icon_image = PhotoImage(file="DatafyLogo.png")
+
+
     scatter_page = ctk.CTkToplevel(self.win)
 
     scatter_page.title("Scatter Plot")
 
     scatter_page.geometry('400x400')
+
+    scatter_page.iconphoto(False, icon_image)
 
     scatter_title = ctk.CTkLabel(master=scatter_page,
                              text="Scatter Plot",
@@ -69,20 +74,15 @@ class Scatter:
 
     scatter_title.pack(padx=10, pady=2)
 
-
-# Beginning of Scatter plot stuff
-
     scatter_prompt = 'How many data points would you like to have? The maximum points you can have are: ' + str(len(self.df))
     scatter_question = ctk.CTkLabel(master=scatter_page, text=scatter_prompt, text_color="#399adb", font=("Comic Sans", 15))
     scatter_question.pack(padx=10, pady=4)
 
-    # errorLabel = ctk.CTkLabel(master=scatter_page, text="", text_color='Red', font=('Comic Sans', 5))
-    # errorLabel.pack()
-
     scatterInput = ctk.CTkEntry(master=scatter_page, fg_color="#399adb", placeholder_text_color='white', placeholder_text="Number of Data Points")
     scatterInput.pack(padx=10, pady=5)
-    #---------------------------------------------
-
+    
+     # -------------------------------------------------------------------
+    
     selection3 = list(self.df.columns.values)
 
     selection4 = list(self.df.columns.values)
