@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from tkinter import ttk
 import customtkinter as ctk
+from PIL import ImageTk, Image
 
 ctk.set_appearance_mode("dark")
 
@@ -46,12 +47,15 @@ class LinReg:
 
 # Start of Linear Regression Setup (Universal Color: "#399adb")
 
+    icon_image = PhotoImage(file="DatafyLogo.png")
 
     lr_page = ctk.CTkToplevel(self.win)
 
     lr_page.title("Linear Regression Page")
 
     lr_page.geometry("400x400")
+
+    lr_page.iconphoto(False, icon_image)
 
     lr_title = ctk.CTkLabel(master=lr_page,
                         text="\nLinear Regression",
@@ -63,9 +67,6 @@ class LinReg:
 
     lin_question = ctk.CTkLabel(master=lr_page, text=scatter_prompt, text_color="#399adb", font=("Comic Sans", 15))
     lin_question.pack(padx=10, pady=4)
-
-    # errorLabel2 = ctk.CTkLabel(master=lr_page, text="", fg='red', font=('Arial', 7))
-    # errorLabel2.pack()
 
     linInput = ctk.CTkEntry(master=lr_page,fg_color="#399adb", placeholder_text_color='white', placeholder_text="Number of Data Points")
     linInput.pack(padx=10, pady=5)
