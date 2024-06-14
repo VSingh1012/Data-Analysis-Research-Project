@@ -20,10 +20,10 @@ window.title("Data Analyzer")
 
 window.geometry("400x400")
 
+icon_image = PhotoImage(file="DatafyLogo.png")
 
-#window.resizable(True, True)
+window.iconphoto(False, icon_image)
 
-# window.attributes('-fullscreen', False)
 
 title = ctk.CTkLabel(master=window, text="DataFy", text_color="#399adb", font=("Comic Sans Bold", 60))
 
@@ -36,8 +36,6 @@ start_button = ctk.CTkButton(master=window, text="Start", fg_color="#399adb", fo
 start_button.pack()
 
 title_img = ctk.CTkImage(Image.open("titlePhoto.png"), size=(300, 200))
-
-
 
 title_img_label = ctk.CTkLabel(master=window, text='', image=title_img)
 
